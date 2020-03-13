@@ -59,7 +59,6 @@ const news = request(createHeader('https://udn.com/news/breaknews/1'), function(
                 }
                 console.log('Json File Success!');
             });
-
     }
     console.log('Finish!');
 })
