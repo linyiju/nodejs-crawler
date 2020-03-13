@@ -1,13 +1,33 @@
 {
-    "name":"spider",
-    "version":"0.0.0",
-    "scripts":{
-        "start":"node crawler/udn_news.js"
-    },
-
-    "dependencies": {
-        "cheerio":"^1.0.0",
-        "request":"^2.88.2",
+  "name": "spider",
+  "version": "1.0.0",
+  "description": "node.js crawler",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linyiju/nodejs-crawler.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/linyiju/nodejs-crawler/issues"
+  },
+  "homepage": "https://github.com/linyiju/nodejs-crawler#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "husky": "^4.2.3",
+    "request": "^2.88.2"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
-    
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4"
+  }
 }
