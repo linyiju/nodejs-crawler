@@ -11,6 +11,7 @@ $ npm install
 ## Getting Start
 To use node.js scrape udn News website
 ```
+$ cd crawler
 $ node udn_news.js
 ```
 Then, the infromatiom will be stored as json document.
