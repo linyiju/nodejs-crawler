@@ -13,8 +13,8 @@ const udn_urls = function (ids){
     return url_list;
 }
 
-function undCrawl(urls){
-    for(const url of urls){
+function undCrawl(udn_url){
+    for(const url of udn_url){
         request(createHeader(url), function(err, res, body){
         if(err){
             console.log('Error');
@@ -30,19 +30,19 @@ function undCrawl(urls){
             $('.story-list__text h2').each(function(i,e){
                 titles[i] = $(this).text().trim();
             });
-
+        
             // Every content
             let contents = [];
             $('.story-list__text p').each(function(i,e){
                 contents[i] = $(this).text().trim();
             });
-
+        
             // Every url
             let urls = [];
             $('.story-list__text h2 a').each(function(i,e){
                 urls[i] = 'https://udn.com/'+$(this).attr('href');
             });        
-
+        
             // Every Create time
             let create_times = [];
             $('.story-list__time').each(function(i,e){
@@ -52,6 +52,7 @@ function undCrawl(urls){
             //Json Document
             let data={};
             data.und_news=[]
+        
             for (i=0;i<titles.length; i++){
                 let news={
                     titles:titles[i], 
@@ -61,23 +62,22 @@ function undCrawl(urls){
                 };
                 data.und_news.push(news)
             };
-
-            return data;
-
-
-        };
-    
-    }
-    
-        )};
-}
-
-const jsonData  = JSON.stringify(undCrawl(udn_urls(12)),null,4);
-fs.writeFile('udn_news.json', jsonData, {flag:'a', encoding:'UTF-8'},
+            const jsonData  = JSON.stringify(data,null,4);
+            fs.writeFile('udn_news.json', jsonData, {flag:'a', encoding:'UTF-8'},
     function(err){
         if(err){
             console.log('Json File Error');
         }
         console.log('Json File Success!');
     });
+        }
+        console.log('Finish!');
+    
+        });
+    
+    }
+    
+}
 
+
+undCrawl(udn_urls(12))
