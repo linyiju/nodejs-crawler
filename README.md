@@ -1,8 +1,9 @@
 # Node.js Crawl 
 
 ## Overview
-Using Node.js to scrape the udn News website(https://udn.com/news/breaknews).
-
+Using Node.js to scrape particular wevsite, such as udn news or spotify.
+- udn News website : https://udn.com/news/breaknews
+- Spotify : https://spotifycharts.com/regional
 ## Install
 ```
 $ npm install
@@ -23,3 +24,9 @@ It's included `Title`, `Content`, `URL`, and `Create Time`.
 1. `Title`
 2. `Content`
 3. `Create Time`
+
+## Avaiable Spider
+- crawler
+    - und_news.js
+    - und_crawler_es7.js
+    - spotify_crawler_es6.js
