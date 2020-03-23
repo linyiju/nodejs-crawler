@@ -2,7 +2,8 @@ const rp = require('request-promise')
 const fs = require('fs')
 const parser = require(`${__dirname}/parser/mops.js`)
 
-let cod_ids = [2885, 2371, 2012]
+let cod_ids = [2885, 2371, 2012, 4551, 2904, 3011, 4433, 2207]
+// let cod_ids = [2885]
 
 async function mops_crawler(co_id){
     let company_infos = []
