@@ -3,7 +3,6 @@ const fs = require('fs')
 const parser = require(`${__dirname}/parser/mops_simple.js`)
 
 let cod_ids = [2885, 2371, 2012, 4551, 2904, 3011, 4433, 2207]
-// let cod_ids = [2885]
 
 async function mops_crawler(co_id){
     let company_infos = []
