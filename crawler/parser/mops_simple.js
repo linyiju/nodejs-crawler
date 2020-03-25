@@ -6,7 +6,6 @@ function MopsHTMLJson(html){
         decodeEntities:false
     })
 
-
     let cmpyContent = {}
     let dom_tabCmpyContent = $('div#company')
     if(undefined == dom_tabCmpyContent) throw new Error('NO DATA!')
