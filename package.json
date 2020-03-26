@@ -17,12 +17,14 @@
   },
   "homepage": "https://github.com/linyiju/nodejs-crawler#readme",
   "dependencies": {
+    "bluebird": "^3.7.2",
     "cheerio": "^1.0.0-rc.3",
     "husky": "^4.2.3",
     "mailgun-js": "^0.22.0",
     "minimist": "^1.2.5",
     "moment": "^2.24.0",
     "puppeteer": "^2.1.1",
+    "redis": "^3.0.2",
     "request": "^2.88.2",
     "request-promise": "^4.2.5"
   },
