@@ -4,7 +4,8 @@ const parser = require(`${__dirname}/parser/mops.js`)
 const mysqlPool = require(`${__dirname}/base.js`).mysqlPool
 const config_temp = JSON.parse(fs.readFileSync(`${__dirname}/config.json`))
 
-let co_ids = [2885, 2371, 2012, 4551, 2904, 3011, 4433, 2207]
+// let co_ids = [2885, 2371, 2012, 4551, 2904, 3011, 4433, 2207]
+let co_ids = [2885]
 
 async function mops_crawler(co_ids){
     let company_infos = []
@@ -36,7 +37,7 @@ async function mops_crawler(co_ids){
         // Main
         let body = await rp(options)
         let infos = parser.mainPrase(body)
-        insertInfo(infos)
+        // insertInfo(infos)
         company_infos.push(infos)
     }
     fs.writeFileSync(`${__dirname}/data/mops_es7.json`, JSON.stringify(company_infos, null, 4))
