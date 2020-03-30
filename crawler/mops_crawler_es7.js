@@ -1,13 +1,14 @@
 const rp = require('request-promise')
 const fs = require('fs')
 const parser = require(`${__dirname}/parser/mops.js`)
+const mysqlPool = require(`${__dirname}/base.js`).mysqlPool
+const config_temp = JSON.parse(fs.readFileSync(`${__dirname}/config.json`))
 
-let cod_ids = [2885, 2371, 2012, 4551, 2904, 3011, 4433, 2207]
-// let cod_ids = [2885]
+let co_ids = [2885, 2371, 2012, 4551, 2904, 3011, 4433, 2207]
 
-async function mops_crawler(co_id){
+async function mops_crawler(co_ids){
     let company_infos = []
-    for (co_id of cod_ids){
+    for (co_id of co_ids){
         // Crawler Setting
         let options = {
             method : 'POST',
@@ -35,9 +36,24 @@ async function mops_crawler(co_id){
         // Main
         let body = await rp(options)
         let infos = parser.mainPrase(body)
+        insertInfo(infos)
         company_infos.push(infos)
     }
     fs.writeFileSync(`${__dirname}/data/mops_es7.json`, JSON.stringify(company_infos, null, 4))
 }
+ 
 
-mops_crawler(cod_ids)
+// Mysql Insert Function
+async function insertInfo(infos){
+    console.log('Saving data')
+    let db = mysqlPool(config_temp.mysql)
+    try{
+        await db.queryAsync('INSERT INTO companys SET ?', infos)
+    }catch(e){
+        throw new Error(e) 
+    }finally{
+        await db.end()
+    }
+}
+
+mops_crawler(co_ids)
