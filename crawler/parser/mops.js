@@ -16,23 +16,23 @@ function mainPrase(html){
         let colData = ($(cmpyRows).find('td').eq(i).text()).trim()
         switch(true){
             case /股票代號/.test(colName):
-                info['cmpyID'] = parseInt(colData)
+                info['id'] = colData
                 break
             
             case /產業類別/.test(colName):
-                info['cmpyType'] = colData
+                info['type'] = colData
                 break
 
             case /外國企業註冊地國/.test(colName):
                 if(isNaN(colData)){
-                    info['cmpyForeignCountry'] = ''
+                    info['foreign_country'] = ''
                 }else{
-                    info['cmpyForeignCountry'] = colData
+                    info['foreign_country'] = colData
                 }
                 break
             
             case /公司名稱/.test(colName):
-                info['cmpyName'] = colData
+                info['name'] = colData
                 break
             
             case /地址/.test(colName):
@@ -47,45 +47,45 @@ function mainPrase(html){
                 info['manager'] = colData
                 break
             
-            case /發言人/.test(colName):
+            case /^發言人$/.test(colName):
                 info['spokesman'] = colData
                 break
             
-            case /發言人電話/.test(colName):
-                info['spokesmanPhone'] = colData
+            case /發言人電話$/.test(colName):
+                info['spokesman_phone'] = colData
                 break
 
             case /代理發言人/.test(colName):
-                info['deputyDpokesman'] = colData
+                info['deputy_spokesman'] = colData
                 break
 
             case /主要經營業務/.test(colName):
-                info['mainBusiness'] = colData
+                info['main_business'] = colData
                 break
             
             case /公司成立日期/.test(colName):
                 colData = parseInt(colData.replace(/\//g,''))+19110000
                 colData = moment(colData, 'YYYYMMDD').format('YYYY-MM-DD')
-                info['createAt'] = colData 
+                info['created_at'] = colData 
                 break
 
             case /營利事業統一編號/.test(colName):
-                info['taxID'] = colData 
+                info['uni_id'] = colData 
                 break
 
             case /實收資本額/.test(colName):
                 colData = parseInt(colData.replace(/,/g, '').replace('元',''))
-                info['taxID'] = colData 
+                info['asset'] = colData 
                 break
 
             case /上市日期/.test(colName):
                 colData = parseInt(colData.replace(/\//g,''))
                 if(colData){
                     colData = moment(colData+19110000, 'YYYYMMDD').format('YYYY-MM-DD')
-                    info['launchDate'] = colData 
+                    info['launch_date'] = colData 
                 }else{
                     colData = moment(colData+19110000, 'YYYYMMDD').format('YYYY-MM-DD')
-                    info['launchDate'] = ''
+                    info['launch_date'] = ''
                 }
                 break
 
@@ -93,41 +93,43 @@ function mainPrase(html){
                 colData = parseInt(colData.replace(/\//g,''))
                 if(colData){
                     colData = moment(colData+19110000, 'YYYYMMDD').format('YYYY-MM-DD')
-                    if(/上市日期/.test(colName)) info['listedDate'] = colData 
-                    if(/上櫃日期/.test(colName)) info['OTCDate'] = colData 
-                    if(/興櫃日期/.test(colName)) info['emergingDate'] = colData 
-                    if(/公開發行日期/.test(colName)) info['publicDate'] = colData 
+                    if(/上市日期/.test(colName)) info['listed_date'] = colData 
+                    if(/上櫃日期/.test(colName)) info['OTC_date'] = colData 
+                    if(/興櫃日期/.test(colName)) info['emerging_date'] = colData 
+                    if(/公開發行日期/.test(colName)) info['public_date'] = colData 
                 }else{
-                    if(/上市日期/.test(colName)) info['listedDate'] = '' 
-                    if(/上櫃日期/.test(colName)) info['OTCDate'] = '' 
-                    if(/興櫃日期/.test(colName)) info['emergingDate'] = '' 
-                    if(/公開發行日期/.test(colName)) info['publicDate'] = ''
+                    if(/上市日期/.test(colName)) info['listed_date'] = '' 
+                    if(/上櫃日期/.test(colName)) info['OTC_date'] = '' 
+                    if(/興櫃日期/.test(colName)) info['emerging_date'] = '' 
+                    if(/公開發行日期/.test(colName)) info['public_date'] = ''
                 }
                 break
             case /普通股每股面額/.test(colName):
                 colData = parseInt(colData.replace('新台幣 ','').replace('元',''))
-                info['perStockValue'] = ''
+                info['per_stock_value'] = ''
                 break
 
             case /已發行普通股數或TDR原股發行股數|特別股/.test(colName):
                 colData = parseInt(colData.split('股')[0].replace(/,/g,''))
                 if(colData){
-                    if (/已發行普通股數或TDR原股發行股數/.test(colName)) info['perStockValue'] = colData
-                    if (/特別股/.test(colName)) info['preferredStock'] = colData
+                    if (/已發行普通股數或TDR原股發行股數/.test(colName)) info['per_stock_value'] = colData
+                    if (/特別股/.test(colName)) info['per_stock_value'] = colData
                 }else{
-                    if (/已發行普通股數或TDR原股發行股數/.test(colName)) info['perStockValue'] = ''
-                    if (/特別股/.test(colName)) info['preferredStock'] = -1
+                    if (/已發行普通股數或TDR原股發行股數/.test(colName)) info['per_stock_value'] = ''
+                    if (/特別股/.test(colName)) info['per_stock_value'] = -1
                 }
+                break
 
-            case /電話/.test(colName):
+            case /^電話$/.test(colName):
                 info['phone'] = colData
                 break
             
-            case /簽證會計師事務所/.test(colName):
-                info['accountAgency']=colData
+            case /^簽證會計師事務所$/.test(colName):
+                info['account_agency']=colData
                 break
         }
     }
+
     return info
 }
     
