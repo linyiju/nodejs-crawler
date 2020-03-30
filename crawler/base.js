@@ -22,7 +22,6 @@ async function redis_db(config){
     console.log(res)
 
     await rc.quit()
-
 }
 
 module.exports = {mysqlPool, redis_db}
