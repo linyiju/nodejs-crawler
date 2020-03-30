@@ -32,7 +32,7 @@ function mainPrase(html){
                     }
                     break
                 
-                case /公司名稱/.test(colName):
+                case /^公司名稱$/.test(colName):
                     info['name'] = colData_1
                     break
                 

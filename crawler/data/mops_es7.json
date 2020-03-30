@@ -3,7 +3,7 @@
         "id": "2885",
         "type": "金融保險業",
         "foreign_country": "",
-        "name": "",
+        "name": "元大金融控股股份有限公司",
         "address": "台北市松山區敦化南路1段66號6樓、10樓、12樓及13樓",
         "ceo": "申鼎籛",
         "manager": "翁健",
@@ -40,6 +40,7 @@
         "investor_email": "ir.fhc@yuanta.com",
         "investor_web": "https://www.yuanta.com/TW/CSR/Stakeholder-Engagement",
         "changed_name": "復華金融控股股份有限公司",
-        "shorten_changed_name": "復華金"
+        "shorten_changed_name": "復華金",
+        "confirmed_date": "96/07/31"
     }
 ]
