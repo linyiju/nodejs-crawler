@@ -2,7 +2,7 @@ const rp = require('request-promise')
 const fs = require('fs')
 const parser = require(`${__dirname}/parser/mops.js`)
 const mysqlPool = require(`${__dirname}/base.js`).mysqlPool
-const config_temp = JSON.parse(fs.readFileSync(`${__dirname}/config.json`))
+const config = JSON.parse(fs.readFileSync(`${__dirname}/config.json`))
 
 // let co_ids = [2885, 2371, 2012, 4551, 2904, 3011, 4433, 2207]
 let co_ids = [2885]
@@ -47,7 +47,7 @@ async function mops_crawler(co_ids){
 // Mysql Insert Function
 async function insertInfo(infos){
     console.log('Saving data')
-    let db = mysqlPool(config_temp.mysql)
+    let db = mysqlPool(config.mysql)
     try{
         await db.queryAsync('INSERT INTO companys SET ?', infos)
     }catch(e){
