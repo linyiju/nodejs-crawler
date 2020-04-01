@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/linyiju/nodejs-crawler#readme",
   "dependencies": {
+    "@sentry/node": "^5.15.4",
     "bluebird": "^3.7.2",
     "cheerio": "^1.0.0-rc.3",
     "husky": "^4.2.3",

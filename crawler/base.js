@@ -1,5 +1,7 @@
 const mysql = require('mysql');
-const Promise = require('bluebird')
+const Promise = require('bluebird');
+const Sentry = require('@sentry/node');
+
 
 // Mysql
 function mysqlPool(config){
@@ -24,4 +26,7 @@ async function redis_db(config){
     await rc.quit()
 }
 
-module.exports = {mysqlPool, redis_db}
+// Sentry
+Sentry.init({ dsn: 'https://0af5f97ff40244848bbfcfd21b999273@sentry.io/5182307' })
+
+module.exports={mysqlPool}
