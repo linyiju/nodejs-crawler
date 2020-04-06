@@ -25,19 +25,18 @@ function mainPrase(html){
     // 設定 key 值
     let idxNo = {}
     let keys = Object.keys(idxRef)
-    for(let i=0; i<cols.length; i++){  
+    for(let i = 0; i<cols.length; i++){  
         let colName = ($(cols).eq(i).text()).trim()
         if(keys.includes(colName)){
             idxNo[i] = idxRef[colName]
-        }
-        
+        }  
     }
     
     // 儲存資料
-    for(let i=1 ; i<rows.length; i++){
+    for(let i = 1 ; i<rows.length; i++){
         let datas = {}
         let cols = $(rows).eq(i).find('td')
-        for(let j=0; j<cols.length; j++){
+        for(let j = 0; j<cols.length; j++){
             let colData = ($(cols).eq(j).text()).trim()
             datas[idxNo[j]] = colData
         }
